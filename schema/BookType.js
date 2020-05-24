@@ -22,5 +22,4 @@ const authors = () => {
     },
   };
 };
-
 module.exports = Booktype;
