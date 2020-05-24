@@ -6,7 +6,7 @@ const book = {
   type: BookType,
   args: { id: { type: GraphQLID } },
   async resolve(parent, args) {
-    return {}; //await Books.findById(args.id);
+    return await Books.findById(args.id);
   },
 };
 

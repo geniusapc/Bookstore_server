@@ -1,13 +1,10 @@
 const express = require("express");
 const graphqlHttp = require("express-graphql");
+require("./startup/errorHandling")();
 const config = require("./config");
 const schema = require("./schema/schema");
 const db = require("./startup/db");
 const logger = require("./startup/logger");
-
-process.on("unhandledRejection", (ex) => {
-  logger.error(ex, ex);
-});
 
 const main = async () => {
   const app = express();
