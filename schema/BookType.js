@@ -9,7 +9,7 @@ const Booktype = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     authorId: { type: GraphQLID },
-    authors: { ...authors() },
+    author: { ...authors() },
   }),
 });
 
@@ -17,8 +17,8 @@ const authors = () => {
   const AuthorType = require("./AuthorType");
   return {
     type: AuthorType,
-    resolve({ authorId }) {
-      return Author.findById(authorId);
+    async resolve({ authorId }) {
+      return await Author.findById(authorId);
     },
   };
 };

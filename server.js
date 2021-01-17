@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const graphqlHttp = require("express-graphql");
 require("./startup/errorHandling")();
 const config = require("./config");
@@ -8,6 +9,7 @@ const logger = require("./startup/logger");
 
 const main = async () => {
   const app = express();
+  app.use(cors());
   await db();
 
   app.use("/graphql", graphqlHttp({ schema, graphiql: true }));
@@ -16,5 +18,4 @@ const main = async () => {
     logger.info(`listening to port ${config.port}`)
   );
 };
-
 main();
